@@ -3,11 +3,22 @@ import ControllerFilmes from '../controller/filmes.js'
 
 const router = express.Router()
 
-router.get("/titulo", ControllerFilmes.Titulo)               //ESTOS
-router.get("/classificacao/:id", ControllerFilmes.Classificacao) //FALTA VER
-router.post("/descricao", ControllerFilmes.Descricao)          // SI SIGUEN SIENDO
-router.put("/lanzamento/:id", ControllerFilmes.Lanzamento) // O CAMBIAN: router.get, post, etc.
+//busca todos - endpoint - controller.funcao
+router.get("/buscar", ControllerFilmes.Buscar)               
 
-//router.delete("/eliminar/:id", ControllerFilmes.Eliminar)
+//busca um - id
+router.get("/buscarUm/:id", ControllerFilmes.BuscarUm) 
+
+//criar
+router.post("/criar", ControllerFilmes.Criar)          
+
+//alterar
+router.put("/alterar/:id", ControllerFilmes.Alterar) 
+
+//alterarstatus
+router.put("/alterarStatus/:id", ControllerFilmes.AlterarStatus) 
+
+//deletar
+router.delete("/eliminar/:id", ControllerFilmes.Deletar)
 
 export default router

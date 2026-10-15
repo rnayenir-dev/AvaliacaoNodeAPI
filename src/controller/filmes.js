@@ -2,60 +2,75 @@ import ServiceFilmes from '../service/filmes.js'
 
 class ControllerFilmes {
 
-    Titulo(req, res) {
+    Buscar(req, res) {
         try {
-            const nomes = ServiceFilmes.Titulo()
+            const filmes = ServiceFilmes.Buscar()
 
-            res.send({ nomes })
-        } catch (e) {
-            res.send({ message: e.message })
-        }
-    }
-
-    Classificacao(req, res) {
-        try {
-            const id = req.params.id
-            const nome = ServiceFilmes.Classificacao(id)
-
-            res.send({ nome })
+            res.send({ filmes })
         } catch (error) {
-            res.send({ message: error.message })
+            res.send({ messagem: error.message })
         }
     }
 
-    Descricao(req, res) {
+    BuscarUm(req, res) {
         try {
-            const nome = req.body.nome
-            ServiceFilmes.Descricao(nome)
+            const id = req.params
+            const filme = ServiceFilmes.BuscarUm(id)
 
-            res.send({ message: "romance, tragedia, inspirado na vida real" })
+            res.send({ filme })
         } catch (error) {
-            res.send({ message: error.message })
+            res.send({ messagem: error.message })
         }
     }
-    
-    Lanzamento(req, res) {
-        try {
-            const id = req.params.id
-            const nome = req.body.nome
-            ServiceFilmes.Lanzamento(id, nome)
 
-            res.send({ message: "1997" })
+    Criar(req, res) {
+        try {
+            const {titulo, classificacao, descricao, lancamento} = req.body
+
+            ServiceFilmes.Criar(titulo, classificacao, descricao, lancamento)
+
+            res.send({ message: "Criado com sucesso!" })
         } catch (error) {
             res.send({ message: error.message })
         }
     }
     
-    // Eliminar(req, res) {
-    // try {
-    //        const id = req.params.id
-    //        ServiceFilmes.Eliminar(id)
-    //        
-    //        res.send({ message: "Deletado com sucesso!" })
-    //    } catch (error) {
-    //        res.send({ message: error.message })
-    //    }
-    //}
+    Alterar(req, res) {
+        try {
+            const id = req.params.id
+            const {titulo, classificacao, descricao, lancamento} = req.body
+            
+            ServiceFilmes.Alterar(id, titulo, classificacao, descricao, lancamento)
+
+            res.send({ message: "Alterado com sucesso" })
+        } catch (error) {
+            res.send({ message: error.message })
+        }
+    }
+    
+      AlterarStatus(req, res) {
+        try {
+            const id = req.params.id
+            
+            ServiceFilmes.AlterarStatus(id)
+
+            res.send({ message: "Alterado com sucesso" })
+        } catch (error) {
+            res.send({ message: error.message })
+        }
+    }
+
+    Deletar(req, res) {
+        try {
+            const id = req.paramsid
+            
+            ServiceFilmes.Deletar(id)
+
+            res.send({ mensagem: "Deletado com sucesso!" })
+        } catch (error) {
+            res.send({ message: error.message })
+        }
+    }
 
 }
 

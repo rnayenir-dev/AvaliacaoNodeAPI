@@ -4,7 +4,7 @@ import router from './src/router/filmes.js'
 const app = express();
 app.use(express.json())
 
-app.use("/api/fimes", router)
+app.use("/api/filmes", router)
 
 app.listen(3000, () => {
     console.log("Servidor ouvind na porta 3000")

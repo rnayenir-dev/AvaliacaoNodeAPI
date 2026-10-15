@@ -1,28 +1,40 @@
-const nomes = new Array("Titanic", "PG-13", "romance, tragedia, inspirado na vida real", "1997")
-
-
+const filmes = new Array(
+    
+    {titulo: "Titanic", classificacao: "PG-13", descricao: "romance", lancamento: true},
+    {titulo: "Matrix", classificacao: "PG-13", descricao: "ficcion", lancamento: true},
+    {titulo: "Avengers", classificacao: "PG-13", descricao: "heroes", lancamento: true}
+    )
 
 class Filmes {
-    Titulo() {
-        return nomes
+
+    Buscar() {
+        return filmes
+    }
+    
+    BuscarUm(id) {
+        return filmes[id]
+    }
+    
+    Criar(titulo, classificacao, descricao, lancamento) {
+        filmes.push(
+            { titulo, classificacao, descricao, lancamento }
+        )
+    }
+    
+    Alterar(id, titulo, classificacao, descricao, lancamento) {
+        filmes[id].titulo = titulo
+        filmes[id].classificacao = classificacao
+        filmes[id].descricao = descricao
+        filmes[id].lancamento = lancamento
+    }
+    
+    AlterarStatus(id) {
+        filmes[id].classificacao = !filmes[id].classificacao
     }
 
-    Classificacao(id) {
-        return nomes[id]
+    Deletar(id) {
+        filmes.splice(id, 1)
     }
-
-    // esssa é a dica que consigo te dar
-    Descricao(titulo, classificacao, descricao, lancamento) {
-        nomes.push(nome)
-    }
-
-    Lanzamento(id, nome) {
-        nomes[id] = nome
-    }
-
-   // Eliminar(id) {
-   //     nomes.splice(id, 1)
-   // }
 }
 
 export default new Filmes()

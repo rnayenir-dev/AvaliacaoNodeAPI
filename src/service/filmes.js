@@ -2,41 +2,49 @@ import Filmes from '../model/filmes.js'
 
 class ServiceFilmes {
 
-    Titulo() {
-        return Filmes.Titulo()
+    Buscar() {
+        return Filmes.Buscar()
     }
     
-    Classificacao(id) {
+    BuscarUm(id) {
         if(!id || isNaN(id)) {
-            throw new Error("Favor informar somente números")
+            throw new Error("Informe um id valido")
         }
 
-        return Filmes.Classificacao(id)
+        return Filmes.BuscarUm(id)
     }
     
-    Descricao(nome) {
-        if(!nome) {
-            throw new Error("Favor informar o nome")
+    Criar(titulo, classificacao, descricao, lancamento) {
+        if(! titulo || ! classificacao || ! descricao || lancamento == undefined ) {
+            throw new Error("Favor informar os dados corretamente")
         }
         
-        Filmes.Descricao(nome)
+        Filmes.Criar(titulo, classificacao, descricao, lancamento)
     }
     
-    Lanzamento(id, nome) {
-        if(!id || isNaN(id) || !nome) {
-            throw new Error("Favor informar todos os dados")
+    Alterar(id, titulo, classificacao, descricao, lancamento) {
+          if(!id || isNaN(id) || ! titulo || ! classificacao || ! descricao || lancamento == undefined ) {
+            throw new Error("Favor informar os dados corretamente")
         }
         
-        Filmes.Lanzamento(id, nome)
+        Filmes.Lanzamento(id, titulo, classificacao, descricao, lancamento)
     }
 
-    //Deletar(id) {
-    //    if(!id || isNaN(id)) {
-    //        throw new Error("Favor informar o Id corretamente")
-    //    }
+    AlterarStatus(id) {
+          if(!id || isNaN(id)) {
+            throw new Error("Favor informar os dados corretamente")
+        }
         
-    //    Pessoa.Deletar(id)
-    //}
+        Filmes.AlterarStatus(id)
+    }
+
+    Deletar(id) {
+        if(!id || isNaN(id)) {
+            throw new Error("Informe um id valido")
+        }
+        
+        Filmes.Deletar(id)
+    }
     
 }
 
